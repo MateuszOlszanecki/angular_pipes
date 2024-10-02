@@ -1,0 +1,20 @@
+<mat-card class="mb-15">
+  <mat-card-header>
+    <mat-card-title
+      >{{ student.name | happy }}
+      {{ student.surname | uppercase }}</mat-card-title
+    ><mat-card-subtitle
+      >Date of birth:
+      {{ student.date_of_birth | date : "dd.MM.YYYY" }}</mat-card-subtitle
+    >
+  </mat-card-header>
+  <mat-card-content
+    >Favourite subject:
+    {{ student.favourite_subject | lowercase | reverse }}</mat-card-content
+  >
+  <mat-card-footer
+    ><mat-card-content
+      >Stipend: {{ student.stipend | currency : "GBP" }}</mat-card-content
+    ></mat-card-footer
+  >
+</mat-card>
