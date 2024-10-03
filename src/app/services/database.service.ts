@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { delay, Observable, of } from 'rxjs';
+import { delay, Observable, of, tap, concatMap } from 'rxjs';
 import { Student } from '../models/student';
 
 const DATA: Student[] = [
@@ -30,7 +30,12 @@ const DATA: Student[] = [
   providedIn: 'root',
 })
 export class DatabaseService {
-  getData(): Observable<Student[]> {
-    return of(DATA).pipe(delay(1000));
+  getData(throwError: boolean = false): Observable<Student[]> {
+    return of(DATA).pipe(
+      delay(1000),
+      tap(() => {
+        if (throwError) throw new Error('Could not fetch data!');
+      })
+    );
   }
 }

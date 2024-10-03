@@ -1,10 +1,14 @@
-<div>
-  <ng-template #loading
-    ><mat-card>
-      <mat-card-content>Loading...</mat-card-content>
-    </mat-card></ng-template
-  >
-  <ng-container *ngIf="data$ | async as students; else loading">
+<div
+  *ngIf="{ data: data$ | async, dataError: dataError$ | async } as observables"
+>
+  <ng-container *ngIf="observables.data as students; else loading">
     <app-student-card *ngFor="let student of students" [student]="student" />
   </ng-container>
+  <app-error
+    *ngIf="observables.dataError as dataError"
+    [error_message]="dataError"
+  />
+  <ng-template #loading
+    ><app-loading *ngIf="!observables.dataError"
+  /></ng-template>
 </div>

@@ -15,3 +15,8 @@ html {
 .text-center {
   text-align: center;
 }
+
+.message-card {
+  width: 75%;
+  margin: auto;
+}
