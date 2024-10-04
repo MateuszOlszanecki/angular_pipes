@@ -19,15 +19,15 @@ import { ErrorComponent } from '../error/error.component';
   templateUrl: './pipes-demo.component.html',
 })
 export class PipesDemoComponent implements OnInit {
-  data$: Observable<Student[]>;
-  dataError$: Observable<Student[]>;
+  students$: Observable<Student[]>;
+  studentsError$: Observable<Student[]>;
 
   constructor(private databaseService: DatabaseService) {}
 
   ngOnInit(): void {
     let throwError = Math.random() < 0.5;
-    this.data$ = this.databaseService.getData(throwError);
-    this.dataError$ = this.data$.pipe(
+    this.students$ = this.databaseService.getStudents(throwError);
+    this.studentsError$ = this.students$.pipe(
       ignoreElements(),
       catchError((error) => of(error))
     );

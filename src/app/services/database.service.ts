@@ -30,7 +30,7 @@ const DATA: Student[] = [
   providedIn: 'root',
 })
 export class DatabaseService {
-  getData(throwError: boolean = false): Observable<Student[]> {
+  getStudents(throwError: boolean = false): Observable<Student[]> {
     return of(DATA).pipe(
       delay(1000),
       tap(() => {

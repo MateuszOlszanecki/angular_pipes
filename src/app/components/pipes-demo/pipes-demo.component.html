@@ -1,14 +1,17 @@
 <div
-  *ngIf="{ data: data$ | async, dataError: dataError$ | async } as observables"
+  *ngIf="{
+    students: students$ | async,
+    studentsError: studentsError$ | async
+  } as data"
 >
-  <ng-container *ngIf="observables.data as students; else loading">
+  <ng-container *ngIf="data.students as students; else loading">
     <app-student-card *ngFor="let student of students" [student]="student" />
   </ng-container>
   <app-error
-    *ngIf="observables.dataError as dataError"
-    [error_message]="dataError"
+    *ngIf="data.studentsError as studentsError"
+    [error_message]="studentsError"
   />
   <ng-template #loading
-    ><app-loading *ngIf="!observables.dataError"
+    ><app-loading *ngIf="!data.studentsError"
   /></ng-template>
 </div>
